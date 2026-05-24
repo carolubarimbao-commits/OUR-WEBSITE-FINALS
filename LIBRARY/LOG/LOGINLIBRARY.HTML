@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BTVC LIBRARY</title>
+
+<style>
+
+#loginPage{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+        linear-gradient(rgba(0,80,40,0.7), rgba(0,80,40,0.7)),
+        url('2 LOGIN REGISTRATION PICTURE.jpg') no-repeat center center;
+    background-size:cover;
+    position:relative;
+}
+
+#loginPage::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:80px;
+    height:100%;
+    background:#f4b400;
+}
+
+.container{
+    width:420px;
+    padding:40px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(8px);
+    border-radius:10px;
+    color:white;
+}
+
+.left h1{
+    font-size:32px;
+    margin-bottom:30px;
+}
+
+.left input{
+    width:100%;
+    padding:12px;
+    margin-bottom:20px;
+    border:none;
+    border-radius:5px;
+    background:rgba(255,255,255,0.2);
+    color:white;
+    outline:none;
+}
+
+.left input::placeholder{ color:#ddd; }
+
+.btn{
+    width:105%;
+    padding:20px;
+    background:#008000;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn:hover{ background:#00a000; }
+
+.left p{ color:#ddd; }
+.left p span{ color:white; font-weight:bold; cursor:pointer; }
+
+
+.home-banner{
+    width:100%;
+    min-height:650px;
+    background:#9acd32;
+    border-radius:0;
+    padding:0;
+    overflow:hidden;
+}
+
+.top-image img{
+    width:100%;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+
+.help-bar{
+    width:100%;
+    background:rgba(140,190,30,0.9);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
+    box-sizing:border-box;
+    flex-wrap:wrap;
+}
+
+.help-title{
+    font-family:"Bodoni MT","Didot",serif;
+    font-style:italic;
+    font-size:55px;
+    font-weight:bold;
+    color:black;
+}
+
+
+.help-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.help-buttons button{
+    padding:18px 30px;
+    border:none;
+    border-radius:12px;
+    background:#FFF792;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.help-buttons button:hover{
+    transform:scale(1.05);
+    background:#FFF792;
+}
+
+
+.home-info{
+    display:none;
+    margin:40px auto;
+    width:90%;
+    max-width:900px;
+    background:#FFF792;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    font-size:22px;
+}
+
+.content{
+    padding:100px 20px 20px 20px;
+}
+
+
+.active-home-info{
+    display:block;
+}
+
+.home-info textarea{
+    width:95%;
+    height:150px;
+    padding:15px;
+    font-size:18px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    resize:none;
+}
+
+.schedule-image{
+    width:100%;
+    max-width:600px;
+    height:auto;
+    display:block;
+    margin:15px auto;
+    object-fit:contain;
+    border-radius:10px;
+}
+
+
+
+#libraryPage{ display:none; }
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+    background:green;
+    flex-wrap:wrap;
+
+    /* ADD THESE */
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    box-sizing:border-box;
+}
+
+
+.logo-section{
+    display:flex;
+    align-items:center;
+}
+
+.logo-section img{
+    width:50px;
+    margin-right:15px;
+}
+
+.library-title{
+    font-size:18px;
+    font-weight:bold;
+    color:white;
+}
+
+nav a{
+    margin:10px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+nav a:hover{ color:yellow; }
+
+.content{ padding:20px; }
+
+.section{ display:none; }
+.section.active{ display:block; }
+
+.hero-image img{
+    width:100%;
+    border-radius:10px;
+}
+
+.home-box{
+    background:#F4B400;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.home-box h1{
+    font-size:100px; 
+}
+
+.book-container{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:20px;
+}
+
+.book-card{
+    width:200px;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.book-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.save-btn{
+    margin-top:10px;
+    padding:8px;
+    background:#ffcc00;
+    border:none;
+    cursor:pointer;
+}
+
+.form-section{ display:none; }
+.form-section.active{ display:block; }
+
+.logo-box img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    border:3px solid white;
+}
+
+#searchInput{
+    width:100%;
+    max-width:500px;
+    height:45px;
+    padding:10px;
+    font-size:16px;
+}
+
+#about{
+    font-size:30px;
+}
+
+</style>
+</head>
+
+<body>
+
+
+<div id="loginPage">
+<div class="container">
+
+<div class="left">
+
+<form id="loginForm" class="form-section active">
+
+<div class="logo-box">
+    <img src="BTVCLOGO.jpg">
+</div>
+
+<h1>LOG IN TO YOUR A ACCOUNT</h1>
+
+<input type="text" id="username" placeholder="Username" required>
+<input type="password" id="password" placeholder="Password" required>
+
+<button class="btn" type="submit">LOGIN</button>
+
+<p>Don't have an account? <span onclick="showForm('registerForm')">REGISTER</span></p>
+</form>
+
+<form id="registerForm" class="form-section">
+<h1>REGISTER</h1>
+
+<input type="text" id="reg-username" placeholder="Username" required>
+<input type="password" id="reg-password" placeholder="Password" required>
+<input type="password" id="confirm-password" placeholder="Confirm Password" required>
+
+<button class="btn" type="submit">REGISTER</button>
+<p onclick="showForm('loginForm')">Back to Login</p>
+</form>
+
+</div>
+</div>
+</div>
+
+
+<div id="libraryPage">
+
+<header>
+
+<div class="logo-section">
+    <img src="BTVCLOGO.jpg">
+    <div class="library-title">
+        Bulacan Agricultural State College - BTVC Campus
+    </div>
+</div>
+
+<nav>
+    <a onclick="showSection('home')">Home</a>
+    <a onclick="showSection('about')">About</a>
+    <a onclick="showSection('search')">Search</a>
+    <a onclick="showSection('books')">Books</a>
+    <a onclick="showSection('save')">Save</a>
+</nav>
+
+</header>
+
+<div class="content">
+
+
+<div id="home" class="section active">
+
+
+    <div class="top-image">
+        <img src="HOME1.png" alt="Top Banner">
+    </div>
+
+
+    <div class="home-banner">
+
+   
+        <div class="help-bar">
+
+            <div class="help-title">
+                How can we help you?
+            </div>
+
+            <div class="help-buttons">
+
+                <button onclick="showHomeContent('librarySchedule')">
+                    Library Schedule
+                </button>
+
+                <button onclick="showHomeContent('classSchedule')">
+                    Class Schedule
+                </button>
+
+                <button onclick="showHomeContent('reportProblem')">
+                    Report a Problem
+                </button>
+
+            </div>
+
+        </div>
+
+ 
+        <div id="librarySchedule" class="home-info active-home-info">
+            <img src="LIBRARY.png" class="schedule-image">
+        </div>
+
+        <div id="classSchedule" class="home-info">
+            <img src="CLASS.jpg" class="schedule-image">
+        </div>
+
+        <div id="reportProblem" class="home-info">
+
+            <h2>Report a Problem</h2>
+
+            <textarea id="problemText"
+            placeholder="Enter your concern..."></textarea>
+
+            <br><br>
+
+            <button class="save-btn"
+            onclick="submitReport()">
+                Submit
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div id="about" class="section">
+    <div class="home-box">
+        <h1>BTVC LIBRARY</h1>
+       <p>The BTVC Library is a space where students and teachers can read, study, and find helpful information for their school needs. It is made to support learning by providing books and other materials that can be used for research, and assignments.</br><br>Inside the library, users can find different types of resources from various subjects. These materials are organized so they are easier to use. Whether you are looking for something specific or just want to explore.<br>The library helps improve reading habits and encourages students to become more independent when it comes to finding information. Teachers can also use the library as a support for their lessons and activities.</br><br>In addition, the BTVC Library promotes proper and responsible use of information. Students are guided on how to use sources correctly and avoid misuse of information. This helps them become more aware and responsible when doing research.
+</br><br>As part of the school, the BTVC Library continues to improve its services to better help its users. It aims to provide a simple, helpful, and welcoming environment where everyone can learn and grow.</br></p>
+    </div>
+</div>
+
+
+<div id="search" class="section">
+    <div class="home-box">
+        <h1>SEARCH A BOOK</h1>
+
+        <!-- ✅ auto search while typing -->
+        <input type="text" id="searchInput" onkeyup="searchBooks()">
+        <button onclick="searchBooks()">Search</button>
+
+        <div id="searchResults" class="book-container"></div>
+    </div>
+</div>
+
+
+<div id="books" class="section">
+<div class="home-box">
+
+<h1>Library Books</h1>
+
+
+<h2>💻 BSIT Books</h2>
+<div class="book-container">
+
+<div class="book-card">
+<img src="B1.jpeg">
+<h3>Computer Networking</h3>
+<p>Protocols and Practice</p>
+<a href="https://open.umn.edu/opentextbooks/textbooks/computer-networking-principles-protocols-and-practice" target="_blank">Visit</a>
+<button class="save-btn" onclick="saveBook('Computer Networking','Protocols and Practice','B1.jpeg','https://open.umn.edu/opentextbooks/textbooks/computer-networking-principles-protocols-and-practice')">Save</button>
+</div>
+
+<div class="book-card">
+<img src="B2.jpeg">
+<h3>Introduction to Computer Science</h3>
+<p>Explores how everyday technology works</p>
+<a href="https://www.amazon.com/Introduction-Computer-Science-Perry-Donham/dp/1634876733" target="_blank">Visit</a>
+<button class="save-btn" onclick="saveBook('Introduction to Computer Science','Explores how everyday technology works','B2.jpeg','https://www.amazon.com/Introduction-Computer-Science-Perry-Donham/dp/1634876733')">Save</button>
+</div>
+
+<div class="book-card">
+<img src="B3.jpeg">
+<h3>Database Design</h3>
+<p>Teaches how to design and manage databases</p>
+<a href="https://open.umn.edu/opentextbooks/textbooks/354" target="_blank">Visit</a>
+<button class="save-btn" onclick="saveBook('Database Design','Teaches how to design and manage databases','B3.jpeg','https://open.umn.edu/opentextbooks/textbooks/354')">Save</button>
+</div>
+
+</div>
+
+
+
+<h2>📚 BEED Books</h2>
+<div class="book-container">
+
+<div class="book-card">
+<img src="B4.jpeg">
+<h3>Foundations of Education</h3>
+<p>Covers teaching basics, learning methods, and student assessment.</p>
+<a href="https://books.google.com.ph/books?id=aY5QWDQpZLQC" target="_blank">Visit</a>
+<button class="save-btn" onclick="saveBook('Foundations of Education','Covers teaching basics, learning methods, and student assessment.','B4.jpeg','https://books.google.com.ph/books?id=aY5QWDQpZLQC')">Save</button>
+</div>
+
+<div class="book-card">
+<img src="B5.jpeg">
+<h3>Educational Psychology</h3>
+<p>An engaging textbook.</p>
+<a href="https://www.amazon.com/Educational-Psychology-John-W-Santrock/dp/1259870340" target="_blank">Visit</a>
+<button class="save-btn" onclick="saveBook('Educational Psychology','An engaging textbook.','B5.jpeg','https://www.amazon.com/Educational-Psychology-John-W-Santrock/dp/1259870340')">Save</button>
+</div>
+
+<div class="book-card">
+<img src="B6.jpeg">
+<h3>Teaching in the Digital Age</h3>
+<p>Shows how technology is used in modern teaching.</p>
+<a href="https://www.amazon.com/Teaching-Digital-Age-Effective-Strategies/dp/6208423139" target="_blank">Visit</a>
+<button class="save-btn" onclick="saveBook('Teaching in the Digital Age','Shows how technology is used in modern teaching.','B6.jpeg','https://www.amazon.com/Teaching-Digital-Age-Effective-Strategies/dp/6208423139')">Save</button>
+</div>
+
+</div>
+
+
+
+<h2>🌱 BSA Books</h2>
+<div class="book-container">
+
+<div class="book-card">
+<img src="B7.jpeg">
+<h3>Introduction to Soil Science</h3>
+<p>This textbook introduces readers to introductory soil science topics.</p>
+<a href="https://iastate.pressbooks.pub/introsoilscience/" target="_blank">Visit</a>
+<button class="save-btn" onclick="saveBook('Introduction to Soil Science','This textbook introduces readers to introductory soil science topics.','B7.jpeg','https://iastate.pressbooks.pub/introsoilscience/')">Save</button>
+</div>
+
+<div class="book-card">
+<img src="B8.jpeg">
+<h3>Sustainable Agriculture for Food Security</h3>
+<p>This book explains how farming.</p>
+<a href="https://www.routledge.com/Sustainable-Agriculture-for-Food-Security-A-Global-Perspective/Balkrishna/p/book/9781774637579" target="_blank">Visit</a>
+<button class="save-btn" onclick="saveBook('Sustainable Agriculture for Food Security','This book explains how farming.','B8.jpeg','https://www.routledge.com/Sustainable-Agriculture-for-Food-Security-A-Global-Perspective/Balkrishna/p/book/9781774637579')">Save</button>
+</div>
+
+<div class="book-card">
+<img src="B9.jpeg">
+<h3>Next Generation Crop</h3>
+<p>This book is a comprehensive.</p>
+<a href="https://www.routledge.com/Next-Generation-Crop-Production-for-Agricultural-Sustainability-and-Food-Security/Gnanesh-Parajulee-Kole/p/book/9781032999982" target="_blank">Visit</a>
+<button class="save-btn" onclick="saveBook('Next Generation Crop','This book is a comprehensive.','B9.jpeg','https://www.routledge.com/Next-Generation-Crop-Production-for-Agricultural-Sustainability-and-Food-Security/Gnanesh-Parajulee-Kole/p/book/9781032999982')">Save</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div> 
+
+
+
+<div id="save" class="section">
+<div class="home-box">
+<h1>Saved Books</h1>
+<div id="savedBooksContainer" class="book-container"></div>
+</div>
+</div>
+
+
+<script>
+
+
+document.querySelectorAll("nav a").forEach(link=>{
+
+    link.addEventListener("dblclick", ()=>{
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    });
+
+});
+
+function showHomeContent(id){
+
+    document.querySelectorAll(".home-info").forEach(box=>{
+        box.classList.remove("active-home-info");
+    });
+
+    document.getElementById(id)
+    .classList.add("active-home-info");
+}
+
+function submitReport(){
+
+    let report =
+    document.getElementById("problemText").value;
+
+    if(report.trim() === ""){
+        alert("Please enter your concern first.");
+        return;
+    }
+
+    alert("Report Submitted!");
+
+    document.getElementById("problemText").value="";
+}
+
+
+
+function showForm(id){
+document.querySelectorAll(".form-section").forEach(f=>f.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+
+document.getElementById("loginForm").addEventListener("submit", e=>{
+e.preventDefault();
+let u=document.getElementById("username").value;
+let p=document.getElementById("password").value;
+
+if(u===localStorage.getItem("user") && p===localStorage.getItem("pass")){
+document.getElementById("loginPage").style.display="none";
+document.getElementById("libraryPage").style.display="block";
+}else{
+alert("Wrong login");
+}
+});
+
+document.getElementById("registerForm").addEventListener("submit", e=>{
+e.preventDefault();
+let u=document.getElementById("reg-username").value;
+let p=document.getElementById("reg-password").value;
+let c=document.getElementById("confirm-password").value;
+
+if(p!==c){ alert("Password mismatch"); return; }
+
+localStorage.setItem("user",u);
+localStorage.setItem("pass",p);
+
+alert("Registered!");
+showForm("loginForm");
+});
+
+/* NAVIGATION */
+function showSection(id){
+document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+
+if(id==="search"){
+displayBooks(allBooks); // ✅ AUTO SHOW ALL BOOKS
+}
+
+if(id==="save") loadSavedBooks();
+}
+
+
+function saveBook(title,desc,img,link){
+let saved=JSON.parse(localStorage.getItem("savedBooks"))||[];
+saved.push({title,desc,img,link});
+localStorage.setItem("savedBooks",JSON.stringify(saved));
+alert("Saved!");
+}
+
+function loadSavedBooks(){
+let c=document.getElementById("savedBooksContainer");
+let saved=JSON.parse(localStorage.getItem("savedBooks"))||[];
+
+c.innerHTML="";
+
+saved.forEach((b,i)=>{
+c.innerHTML+=`
+<div class="book-card">
+<img src="${b.img}">
+<h3>${b.title}</h3>
+<p>${b.desc}</p>
+
+<!-- ✅ LINK ADDED HERE -->
+<a href="${b.link}" target="_blank">Visit Book</a>
+
+<br>
+
+<button onclick="deleteBook(${i})">Delete</button>
+</div>`;
+});
+}
+
+
+function deleteBook(i){
+let saved=JSON.parse(localStorage.getItem("savedBooks"))||[];
+saved.splice(i,1);
+localStorage.setItem("savedBooks",JSON.stringify(saved));
+loadSavedBooks();
+}
+
+
+const allBooks = [
+
+{
+title:"Computer Networking",
+desc:"Protocols and Practice",
+img:"B1.jpeg",
+link:"https://open.umn.edu/opentextbooks/textbooks/computer-networking-principles-protocols-and-practice"
+},
+
+{
+title:"Introduction to Computer Science",
+desc:"Explores how everyday technology works",
+img:"B2.jpeg",
+link:"https://www.amazon.com/Introduction-Computer-Science-Perry-Donham/dp/1634876733"
+},
+
+{
+title:"Database Design",
+desc:"Teaches how to design and manage databases",
+img:"B3.jpeg",
+link:"https://open.umn.edu/opentextbooks/textbooks/354"
+},
+
+{
+title:"Foundations of Education",
+desc:"Covers teaching basics, learning methods, and student assessment.",
+img:"B4.jpeg",
+link:"https://books.google.com.ph/books?id=aY5QWDQpZLQC&printsec=copyright#v=onepage&q&f=false"
+},
+
+{
+title:"Educational Psychology",
+desc:"An engaging textbook.",
+img:"B5.jpeg",
+link:"https://www.amazon.com/Educational-Psychology-John-W-Santrock/dp/1259870340"
+},
+
+{
+title:"Teaching in the Digital Age",
+desc:"Shows how technology is used in modern teaching.",
+img:"B6.jpeg",
+link:"https://www.amazon.com/Teaching-Digital-Age-Effective-Strategies/dp/6208423139"
+},
+
+{
+title:"Introduction to Soil Science",
+desc:"This textbook introduces readers to introductory soil science topics.",
+img:"B7.jpeg",
+link:"https://iastate.pressbooks.pub/introsoilscience/"
+},
+
+{
+title:"Sustainable Agriculture for Food Security",
+desc:"This book explains how farming.",
+img:"B8.jpeg",
+link:"https://www.routledge.com/Sustainable-Agriculture-for-Food-Security-A-Global-Perspective/Balkrishna/p/book/9781774637579"
+},
+
+{
+title:"Next Generation Crop",
+desc:"This book is a comprehensive.",
+img:"B9.jpeg",
+link:"https://www.routledge.com/Next-Generation-Crop-Production-for-Agricultural-Sustainability-and-Food-Security/Gnanesh-Parajulee-Kole/p/book/9781032999982"
+}
+
+];
+
+
+function displayBooks(list){
+let r=document.getElementById("searchResults");
+r.innerHTML="";
+
+if(list.length===0){
+r.innerHTML="<p>No books found</p>";
+return;
+}
+
+list.forEach(b=>{
+r.innerHTML+=`
+<div class="book-card">
+<img src="${b.img}">
+<h3>${b.title}</h3>
+<p>${b.desc}</p>
+<a href="${b.link}" target="_blank">Visit</a>
+<button class="save-btn"
+onclick="saveBook('${b.title}','${b.desc}','${b.img}','${b.link}')">
+💾 Save
+</button>
+</div>`;
+});
+}
+
+
+function searchBooks(){
+let v=document.getElementById("searchInput").value.toLowerCase();
+
+let filtered=allBooks.filter(b=>
+b.title.toLowerCase().includes(v) ||
+b.desc.toLowerCase().includes(v)
+);
+
+displayBooks(filtered);
+}
+
+</script>
+
+<footer style="background:green;color:white;text-align:center;padding:15px;">
+© 2026 Library of BTVC
+</footer>
+
+</body>
+</html>
